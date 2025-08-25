@@ -1,0 +1,19 @@
+[INFO] 2025-08-25 15:10:57,139 autoreload 10852 11648 Watching for file changes with StatReloader
+[INFO] 2025-08-25 15:11:11,299 autoreload 21212 20120 Watching for file changes with StatReloader
+[INFO] 2025-08-25 15:11:13,447 basehttp 21212 8580 "GET / HTTP/1.1" 200 12068
+[INFO] 2025-08-25 15:11:45,423 basehttp 21212 8580 "GET /static/images/259281.jpg HTTP/1.1" 200 2374278
+[INFO] 2025-08-25 15:34:08,079 autoreload 10780 28612 Watching for file changes with StatReloader
+[INFO] 2025-08-25 15:35:43,799 autoreload 24332 20036 Watching for file changes with StatReloader
+[INFO] 2025-08-25 15:35:45,654 basehttp 24332 15716 "GET / HTTP/1.1" 200 12068
+[INFO] 2025-08-25 16:14:05,389 autoreload 24332 20036 E:\projects\PycharmProjects\medoMall\medoMall\urls.py changed, reloading.
+[INFO] 2025-08-25 16:14:05,817 autoreload 1364 9080 Watching for file changes with StatReloader
+[INFO] 2025-08-25 16:24:59,623 autoreload 1364 9080 E:\projects\PycharmProjects\medoMall\apps\user\urls.py changed, reloading.
+[INFO] 2025-08-25 16:25:00,006 autoreload 18220 14228 Watching for file changes with StatReloader
+[INFO] 2025-08-25 16:25:08,094 autoreload 15124 15452 Watching for file changes with StatReloader
+[WARNING] 2025-08-25 16:25:09,483 log 15124 26732 Not Found: /
+[WARNING] 2025-08-25 16:25:09,483 basehttp 15124 26732 "GET / HTTP/1.1" 404 2307
+[INFO] 2025-08-25 16:25:10,398 autoreload 15124 15452 E:\projects\PycharmProjects\medoMall\apps\user\views.py changed, reloading.
+[INFO] 2025-08-25 16:25:10,758 autoreload 9264 9028 Watching for file changes with StatReloader
+[WARNING] 2025-08-25 16:25:15,988 log 9264 20616 Not Found: /register
+[WARNING] 2025-08-25 16:25:15,990 basehttp 9264 20616 "GET /register HTTP/1.1" 404 2349
+[INFO] 2025-08-25 16:25:32,997 basehttp 9264 20616 "GET /user/register HTTP/1.1" 200 136

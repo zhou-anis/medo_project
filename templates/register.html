@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>注册</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1220;
+      --card: #151a2b;
+      --muted: #8b93a7;
+      --text: #e7eaf2;
+      --primary: #7c8cff;
+      --ring: #a8b3ff;
+      --danger:#ef4444;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,140,255,.18), transparent 60%),
+        radial-gradient(1000px 500px at 110% 20%, rgba(124,140,255,.12), transparent 60%),
+        linear-gradient(180deg, #0b0f1c, #0f1220 35%, #0f1220 100%);
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .container{
+      width:min(640px, 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)) , var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .container::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius:calc(var(--radius) + 1px);
+      padding:1px;
+      background:linear-gradient(120deg, rgba(124,140,255,.6), rgba(124,140,255,0) 30%, rgba(124,140,255,.4) 70%, rgba(124,140,255,0));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      pointer-events:none;
+      opacity:.35;
+    }
+    header{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+    .logo{width:42px; height:42px; border-radius:12px; background:conic-gradient(from 0deg, #7c8cff, #87e6fb, #7c8cff); filter:saturate(110%); box-shadow:0 6px 20px rgba(124,140,255,.35);}
+    h1{font-size:22px; margin:0; letter-spacing:.2px;}
+    p.subtitle{margin:6px 0 0; color:var(--muted); font-size:14px;}
+
+    form{display:grid; gap:14px; margin-top:8px;}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+    @media (max-width:600px){.grid{grid-template-columns:1fr}}
+
+    .field{display:grid; gap:8px;}
+    label{font-size:13px; color:#cfd5e7;}
+    input, select{
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      background:#0f1424;
+      border:1px solid rgba(255,255,255,.09);
+      color:var(--text);
+      outline:none;
+      transition:border-color .2s, box-shadow .2s, background .2s;
+      appearance:none;
+    }
+    input::placeholder{color:#9aa3ba}
+    input:focus, select:focus{
+      border-color:var(--ring);
+      box-shadow:0 0 0 4px rgba(124,140,255,.18);
+      background:#0c1020;
+    }
+    .note{color:#9aa3ba; font-size:12px}
+    .terms{display:flex; align-items:flex-start; gap:10px; font-size:14px; color:#cfd5e7; line-height:1.4;}
+    .terms input{margin-top:3px; accent-color:var(--primary)}
+
+    .btn{
+      width:100%;
+      border:none; cursor:pointer;
+      padding:14px 16px; border-radius:12px;
+      background:linear-gradient(180deg, #8ea0ff, #7c8cff);
+      color:#0b0f1c; font-weight:700; letter-spacing:.2px; font-size:15px;
+      box-shadow:0 10px 24px rgba(124,140,255,.35);
+      transition:transform .06s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{filter:saturate(110%); box-shadow:0 14px 28px rgba(124,140,255,.45)}
+    .btn:active{transform:translateY(1px)}
+    .helper{text-align:center; color:var(--muted); font-size:14px; margin-top:10px;}
+    .helper a{color:var(--primary); text-decoration:none}
+
+    /* 简单的纯 CSS 校验提示（配合 :invalid） */
+    input:required:invalid{border-color:rgba(239,68,68,.7)}
+    .error-tip{display:none; color:#ffb4b4; font-size:12px}
+    input:required:invalid + .error-tip{display:block}
+
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="title">
+    <header>
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1 id="title">创建你的账户</h1>
+        <p class="subtitle">填写以下信息完成注册</p>
+      </div>
+    </header>
+
+    <form action="#" method="post" novalidate>
+      <div class="grid">
+        <div class="field">
+          <label for="name">姓名</label>
+          <input id="name" name="name" type="text" placeholder="张三" required minlength="2" />
+          <div class="error-tip">请填写姓名（至少 2 个字符）</div>
+        </div>
+
+        <div class="field">
+          <label for="username">用户名</label>
+          <input id="username" name="username" type="text" placeholder="your_id" required pattern="^[A-Za-z0-9_]{4,16}$" />
+          <div class="note">4–16 位字母/数字/下划线</div>
+        </div>
+
+        <div class="field">
+          <label for="email">邮箱</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com" required />
+          <div class="error-tip">请输入有效邮箱地址</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">手机（可选）</label>
+          <input id="phone" name="phone" type="tel" placeholder="13800000000" pattern="^1[3-9]\\d{9}$" />
+          <div class="note">中国大陆手机号格式示例：13800000000</div>
+        </div>
+
+        <div class="field">
+          <label for="password">设置密码</label>
+          <input id="password" name="password" type="password" placeholder="至少 8 位，含字母和数字" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d\\W]{8,}$" />
+          <div class="note">需至少 8 位，包含字母和数字</div>
+        </div>
+
+        <div class="field">
+          <label for="confirm">确认密码</label>
+          <input id="confirm" name="confirm" type="password" placeholder="再次输入密码" required minlength="8" />
+          <div class="note">提示：提交时应在后端或 JS 校验两次密码是否一致</div>
+        </div>
+
+        <div class="field">
+          <label for="country">国家/地区</label>
+          <select id="country" name="country" required>
+            <option value="" selected disabled>请选择</option>
+            <option>中国</option>
+            <option>美国</option>
+            <option>日本</option>
+            <option>英国</option>
+            <option>德国</option>
+            <option>法国</option>
+            <option>其他</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="ref">邀请码（可选）</label>
+          <input id="ref" name="ref" type="text" placeholder="例如：ABCD1234" pattern="^[A-Za-z0-9]{6,12}$" />
+        </div>
+      </div>
+
+      <label class="terms">
+        <input id="agree" name="agree" type="checkbox" required>
+        我已阅读并同意 <a href="#" style="color:var(--primary); text-decoration:none;">服务条款</a> 与 <a href="#" style="color:var(--primary); text-decoration:none;">隐私政策</a>
+      </label>
+
+      <button class="btn" type="submit">创建账户</button>
+
+      <p class="helper">已经有账号？ <a href="login.html">去登录</a></p>
+    </form>
+  </main>
+</body>
+</html>

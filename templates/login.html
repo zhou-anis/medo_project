@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>登录</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1220;
+      --card: #151a2b;
+      --muted: #8b93a7;
+      --text: #e7eaf2;
+      --primary: #7c8cff;
+      --ring: #a8b3ff;
+      --success:#23c55e;
+      --danger:#ef4444;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,140,255,.18), transparent 60%),
+        radial-gradient(1000px 500px at 110% 20%, rgba(124,140,255,.12), transparent 60%),
+        linear-gradient(180deg, #0b0f1c, #0f1220 35%, #0f1220 100%);
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .container{
+      width:min(520px, 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)) , var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .container::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius:calc(var(--radius) + 1px);
+      padding:1px;
+      background:linear-gradient(120deg, rgba(124,140,255,.6), rgba(124,140,255,0) 30%, rgba(124,140,255,.4) 70%, rgba(124,140,255,0));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      pointer-events:none;
+      opacity:.35;
+    }
+    header{
+      display:flex; align-items:center; gap:14px; margin-bottom:22px;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:12px;
+      background:conic-gradient(from 0deg, #7c8cff, #87e6fb, #7c8cff);
+      filter:saturate(110%);
+      box-shadow:0 6px 20px rgba(124,140,255,.35);
+    }
+    h1{
+      font-size:22px; margin:0; letter-spacing:.2px;
+    }
+    p.subtitle{
+      margin:6px 0 0; color:var(--muted); font-size:14px;
+    }
+    form{display:grid; gap:14px; margin-top:8px;}
+    .field{
+      display:grid; gap:8px;
+    }
+    label{font-size:13px; color:#cfd5e7;}
+    input[type="email"],
+    input[type="password"]{
+      width:100%;
+      padding:14px 14px;
+      border-radius:12px;
+      background:#0f1424;
+      border:1px solid rgba(255,255,255,.09);
+      color:var(--text);
+      outline:none;
+      transition:border-color .2s, box-shadow .2s, background .2s;
+    }
+    input::placeholder{color:#9aa3ba}
+    input:focus{
+      border-color:var(--ring);
+      box-shadow:0 0 0 4px rgba(124,140,255,.18);
+      background:#0c1020;
+    }
+    .row{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      margin-top:2px;
+    }
+    .remember{
+      display:flex; align-items:center; gap:10px; font-size:14px; color:#cfd5e7;
+    }
+    .remember input{accent-color:var(--primary)}
+    .link{
+      color:var(--primary); text-decoration:none; font-size:14px;
+    }
+    .btn{
+      width:100%;
+      border:none; cursor:pointer;
+      padding:14px 16px; border-radius:12px;
+      background:linear-gradient(180deg, #8ea0ff, #7c8cff);
+      color:#0b0f1c; font-weight:700; letter-spacing:.2px; font-size:15px;
+      box-shadow:0 10px 24px rgba(124,140,255,.35);
+      transition:transform .06s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{filter:saturate(110%); box-shadow:0 14px 28px rgba(124,140,255,.45)}
+    .btn:active{transform:translateY(1px)}
+    .helper{
+      text-align:center; color:var(--muted); font-size:14px; margin-top:10px;
+    }
+    .helper a{color:var(--primary); text-decoration:none}
+    /* 校验提示（纯 CSS 显示，配合 required/类型约束） */
+    .field input:invalid[aria-invalid="true"]{border-color:var(--danger)}
+    .note{color:#9aa3ba; font-size:12px}
+    footer{
+      margin-top:16px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; color:var(--muted); font-size:12px;
+      justify-content:center;
+    }
+    /* 小屏适配 */
+    @media (max-width:480px){
+      .container{padding:22px}
+      h1{font-size:20px}
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="title">
+    <header>
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1 id="title">欢迎回来</h1>
+        <p class="subtitle">请登录您的账户以继续</p>
+      </div>
+    </header>
+
+    <form action="#" method="post" novalidate>
+      <div class="field">
+        <label for="email">邮箱</label>
+        <input id="email" name="email" type="email" placeholder="name@example.com" required
+               aria-invalid="false" autocomplete="username" />
+        <div class="note">请输入有效邮箱地址</div>
+      </div>
+
+      <div class="field">
+        <label for="password">密码</label>
+        <input id="password" name="password" type="password" placeholder="至少 8 位" minlength="8" required
+               aria-invalid="false" autocomplete="current-password" />
+      </div>
+
+      <div class="row">
+        <label class="remember">
+          <input type="checkbox" name="remember"> 记住我
+        </label>
+        <a class="link" href="#" aria-label="找回密码">忘记密码？</a>
+      </div>
+
+      <button class="btn" type="submit">登录</button>
+
+      <p class="helper">还没有账号？ <a href="register.html">去注册</a></p>
+    </form>
+
+    <footer>
+      <span>受 reCAPTCHA 保护 · 隐私与条款</span>
+    </footer>
+  </main>
+</body>
+</html>
